@@ -4,33 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f8d0bab-89eb-4555-bb8f-cbdec81d6e75" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/thriftCompiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-api/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-api/src/main/java/org/fifpoet/api/HelloParam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-api/src/main/java/org/fifpoet/api/HelloService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-common/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/entity/RpcRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/entity/RpcResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/enumeration/ResponseCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/util/LogUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/client/RpcClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/client/RpcClientProxy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/server/RpcServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/server/WorkerThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-test-client/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-test-client/src/main/java/org/fifpoet/test/TestClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-test-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet/test/HelloServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet/test/TestServer.java" afterDir="false" />
+    <list default="true" id="6f8d0bab-89eb-4555-bb8f-cbdec81d6e75" name="Changes" comment="first commit. build Server &amp; Client to test basic RPC invoke.">
+      <change afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/enumeration/RpcErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/exception/RpcException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/registry/DefaultServiceRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/registry/ServiceRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,24 +44,24 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "temurin-1.8",
-    "last_opened_file_path": "/Users/zhaoce/workspace/study/poet-rpc/rpc-test-server/src/main/java/org/fifpoet",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;temurin-1.8&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/zhaoce/workspace/study/poet-rpc/rpc-test-server/src/main/java/org/fifpoet&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet" />
@@ -133,8 +112,17 @@
       <updated>1687090665593</updated>
       <workItem from="1687090666841" duration="1028000" />
       <workItem from="1687188129172" duration="18722000" />
-      <workItem from="1687358803114" duration="5860000" />
+      <workItem from="1687358803114" duration="8930000" />
+      <workItem from="1687454341627" duration="1761000" />
     </task>
+    <task id="LOCAL-00001" summary="first commit. build Server &amp; Client to test basic RPC invoke.">
+      <created>1687447163596</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687447163596</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,5 +138,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit. build Server &amp; Client to test basic RPC invoke." />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit. build Server &amp; Client to test basic RPC invoke." />
   </component>
 </project>
