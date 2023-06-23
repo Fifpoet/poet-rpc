@@ -12,6 +12,7 @@ import org.fifpoet.rpc.RpcClient;
 import org.fifpoet.rpc.codec.CommonDecoder;
 import org.fifpoet.rpc.codec.CommonEncoder;
 import org.fifpoet.rpc.serializer.JsonSerializer;
+import org.fifpoet.rpc.serializer.KryoSerializer;
 import org.fifpoet.util.LogUtil;
 
 public class NettyClient implements RpcClient {
@@ -36,7 +37,8 @@ public class NettyClient implements RpcClient {
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline pipeline = ch.pipeline();
                         pipeline.addLast(new CommonDecoder())
-                                .addLast(new CommonEncoder(new JsonSerializer()))
+//                                .addLast(new CommonEncoder(new JsonSerializer()))
+                                .addLast(new CommonEncoder(new KryoSerializer()))
                                 .addLast(new NettyClientHandler());
                     }
                 });

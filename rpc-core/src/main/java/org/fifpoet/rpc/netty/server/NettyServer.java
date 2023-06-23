@@ -11,6 +11,7 @@ import org.fifpoet.rpc.RpcServer;
 import org.fifpoet.rpc.codec.CommonDecoder;
 import org.fifpoet.rpc.codec.CommonEncoder;
 import org.fifpoet.rpc.serializer.JsonSerializer;
+import org.fifpoet.rpc.serializer.KryoSerializer;
 import org.fifpoet.util.LogUtil;
 
 public class NettyServer implements RpcServer {
@@ -19,6 +20,7 @@ public class NettyServer implements RpcServer {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
+            //TODO Netty demo
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
@@ -30,7 +32,8 @@ public class NettyServer implements RpcServer {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
-                            pipeline.addLast(new CommonEncoder(new JsonSerializer()));
+//                            pipeline.addLast(new CommonEncoder(new JsonSerializer()));
+                            pipeline.addLast(new CommonEncoder(new KryoSerializer()));
                             pipeline.addLast(new CommonDecoder());
                             pipeline.addLast(new NettyServerHandler());
                         }

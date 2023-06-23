@@ -38,7 +38,7 @@ public class JsonSerializer implements CommonSerializer {
         }
     }
 
-    //TODO
+    // RpcRequest contains Object array, which can entail deserialization can't work
     private Object handleRequest(Object obj) throws IOException {
         RpcRequest rpcRequest = (RpcRequest) obj;
         for(int i = 0; i < rpcRequest.getParamTypes().length; i ++) {

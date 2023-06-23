@@ -4,31 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f8d0bab-89eb-4555-bb8f-cbdec81d6e75" name="Changes" comment="sail RequestHandler">
-      <change afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/enumeration/PackageType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/enumeration/SerializerCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/RpcClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/RpcServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/codec/CommonDecoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/codec/CommonEncoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/netty/client/NettyClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/netty/client/NettyClientHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/netty/server/NettyServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/netty/server/NettyServerHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/serializer/CommonSerializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/serializer/JsonSerializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="6f8d0bab-89eb-4555-bb8f-cbdec81d6e75" name="Changes" comment="add Netty to correspondent between server and client, including json en/decoder">
+      <change afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/exception/SerializeException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/serializer/KryoSerializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-api/src/main/java/org/fifpoet/api/HelloParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-api/src/main/java/org/fifpoet/api/HelloParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/entity/RpcRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/entity/RpcRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/enumeration/RpcErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/enumeration/RpcErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/client/RpcClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/socket/client/SocketClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/client/RpcClientProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/RpcClientProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/registry/DefaultServiceRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/registry/DefaultServiceRegistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/server/RequestHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/socket/server/RequestHandlerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/server/RpcServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/socket/server/SocketServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-test-client/src/main/java/org/fifpoet/test/TestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-test-client/src/main/java/org/fifpoet/test/TestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet/test/TestServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet/test/TestServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/enumeration/SerializerCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/enumeration/SerializerCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/netty/client/NettyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/netty/client/NettyClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/netty/server/NettyServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/netty/server/NettyServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/serializer/CommonSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/serializer/CommonSerializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/serializer/JsonSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/serializer/JsonSerializer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +130,7 @@
       <workItem from="1687090666841" duration="1028000" />
       <workItem from="1687188129172" duration="18722000" />
       <workItem from="1687358803114" duration="8930000" />
-      <workItem from="1687454341627" duration="20040000" />
+      <workItem from="1687454341627" duration="24760000" />
     </task>
     <task id="LOCAL-00001" summary="first commit. build Server &amp; Client to test basic RPC invoke.">
       <created>1687447163596</created>
@@ -169,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687484148157</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add Netty to correspondent between server and client, including json en/decoder">
+      <created>1687513225912</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1687513225912</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +181,7 @@
     <MESSAGE value="first commit. build Server &amp; Client to test basic RPC invoke." />
     <MESSAGE value="add Registry to contain all serviceName-&gt;service." />
     <MESSAGE value="sail RequestHandler" />
-    <option name="LAST_COMMIT_MESSAGE" value="sail RequestHandler" />
+    <MESSAGE value="add Netty to correspondent between server and client, including json en/decoder" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Netty to correspondent between server and client, including json en/decoder" />
   </component>
 </project>
