@@ -1,6 +1,7 @@
 package org.fifpoet.test;
 
 import org.fifpoet.api.HelloService;
+import org.fifpoet.rpc.registry.DefaultServiceRegistry;
 import org.fifpoet.rpc.server.RpcServer;
 
 /**
@@ -11,8 +12,8 @@ public class TestServer {
 
     public static void main(String[] args) {
         HelloService helloService = new HelloServiceImpl();
-        RpcServer rpcServer = new RpcServer();
-        rpcServer.register(helloService, 9000);
+        RpcServer rpcServer = new RpcServer(new DefaultServiceRegistry());
+        rpcServer.start(helloService, 9000);
     }
 
 }

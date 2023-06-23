@@ -3,6 +3,7 @@ package org.fifpoet.rpc.server;
 import lombok.AllArgsConstructor;
 import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.entity.RpcResponse;
+import org.fifpoet.rpc.registry.ServiceRegistry;
 import org.fifpoet.util.LogUtil;
 
 import java.io.IOException;
@@ -13,12 +14,13 @@ import java.lang.reflect.Method;
 import java.net.Socket;
 
 /**
- * single thread to handle one socket?
+ * single thread to handle one request
  */
 @AllArgsConstructor
-public class WorkerThread implements Runnable{
+public class RequestHandlerThread implements Runnable{
     private Socket socket;
-    private Object service;
+    private ServiceRegistry serviceRegistry;
+    private RequestHandler requestHandler;
 
     @Override
     public void run() {
@@ -26,12 +28,12 @@ public class WorkerThread implements Runnable{
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream())) {
             RpcRequest rpcRequest = (RpcRequest) objectInputStream.readObject();
             // get method and invoke by reflection
-            Method method = service.getClass().getMethod(rpcRequest.getMethodName(), rpcRequest.getParamTypes());
-            Object returnObject = method.invoke(service, rpcRequest.getParameters());
-            objectOutputStream.writeObject(RpcResponse.success(returnObject));
+            String interfaceName = rpcRequest.getInterfaceName();
+            Object service = serviceRegistry.getService(interfaceName);
+            Object result = requestHandler.handle(rpcRequest, service);
+            objectOutputStream.writeObject(RpcResponse.success(result));
             objectOutputStream.flush();
-        } catch (IOException | ClassNotFoundException | NoSuchMethodException | IllegalAccessException |
-                 InvocationTargetException e) {
+        } catch (IOException | ClassNotFoundException e) {
             LogUtil.ERROR().error("remote method invoke error：", e);
         }
     }

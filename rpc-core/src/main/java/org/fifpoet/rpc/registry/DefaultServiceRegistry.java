@@ -31,7 +31,7 @@ public class DefaultServiceRegistry implements ServiceRegistry {
         for(Class<?> i : interfaces) {
             serviceMap.put(i.getCanonicalName(), service);
         }
-        LogUtil.INFO().info("interface: {}. service: {}", interfaces, serviceName);
+        LogUtil.INFO().info("service register. {}. service: {}", interfaces, serviceName);
     }
 
     @Override
