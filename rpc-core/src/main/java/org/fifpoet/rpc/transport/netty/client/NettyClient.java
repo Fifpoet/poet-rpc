@@ -11,6 +11,7 @@ import org.fifpoet.entity.RpcResponse;
 import org.fifpoet.rpc.RpcClient;
 import org.fifpoet.rpc.codec.CommonDecoder;
 import org.fifpoet.rpc.codec.CommonEncoder;
+import org.fifpoet.rpc.serializer.CommonSerializer;
 import org.fifpoet.rpc.serializer.KryoSerializer;
 import org.fifpoet.util.LogUtil;
 
@@ -19,6 +20,7 @@ public class NettyClient implements RpcClient {
     private final String host;
     private final int port;
     private static final Bootstrap bootstrap;
+    private CommonSerializer serializer;
 
     public NettyClient(String host, int port) {
         this.host = host;
@@ -69,4 +71,8 @@ public class NettyClient implements RpcClient {
         return null;
     }
 
+    @Override
+    public void setSerializer(CommonSerializer serializer) {
+        this.serializer = serializer;
+    }
 }

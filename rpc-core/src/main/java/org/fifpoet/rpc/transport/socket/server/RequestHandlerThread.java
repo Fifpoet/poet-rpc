@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.entity.RpcResponse;
 import org.fifpoet.rpc.provider.ServiceProvider;
-import org.fifpoet.rpc.server.RequestHandler;
+import org.fifpoet.rpc.serializer.CommonSerializer;
+import org.fifpoet.rpc.handler.RequestHandler;
 import org.fifpoet.util.LogUtil;
 
 import java.io.IOException;
@@ -18,8 +19,9 @@ import java.net.Socket;
 @AllArgsConstructor
 public class RequestHandlerThread implements Runnable{
     private Socket socket;
-    private ServiceProvider serviceProvider;
     private RequestHandler requestHandler;
+    private ServiceProvider serviceProvider;
+    private CommonSerializer serializer;
 
     @Override
     public void run() {

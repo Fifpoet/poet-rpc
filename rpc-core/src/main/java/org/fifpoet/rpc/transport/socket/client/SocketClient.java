@@ -3,6 +3,7 @@ package org.fifpoet.rpc.transport.socket.client;
 
 import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.rpc.RpcClient;
+import org.fifpoet.rpc.serializer.CommonSerializer;
 import org.fifpoet.util.LogUtil;
 
 import java.io.IOException;
@@ -13,8 +14,9 @@ import java.net.Socket;
 public class SocketClient implements RpcClient {
     private final String host;
     private final int port;
+    private CommonSerializer serializer;
 
-    SocketClient (String host, int port) {
+    public SocketClient (String host, int port) {
         this.host = host;
         this.port = port;
     }
@@ -30,5 +32,10 @@ public class SocketClient implements RpcClient {
             LogUtil.ERROR().error("Client send request failed");
             return null;
         }
+    }
+
+    @Override
+    public void setSerializer(CommonSerializer serializer) {
+        this.serializer = serializer;
     }
 }

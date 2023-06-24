@@ -1,4 +1,4 @@
-package org.fifpoet.rpc.server;
+package org.fifpoet.rpc.handler;
 
 import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.entity.RpcResponse;

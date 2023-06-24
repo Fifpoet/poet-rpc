@@ -8,7 +8,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class DefaultServiceRegistry implements ServiceProvider {
+/**
+ * reserve local services
+ */
+public class ServiceProviderImpl implements ServiceProvider {
 
     // service map & set. both concurrent safe.
     // make them static, insure all instance share one register center

@@ -5,11 +5,11 @@ import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.ReferenceCountUtil;
-import org.fifpoet.rpc.server.RequestHandler;
+import org.fifpoet.rpc.handler.RequestHandler;
 import org.fifpoet.util.LogUtil;
 import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.entity.RpcResponse;
-import org.fifpoet.rpc.provider.DefaultServiceRegistry;
+import org.fifpoet.rpc.provider.ServiceProviderImpl;
 import org.fifpoet.rpc.provider.ServiceProvider;
 
 /**
@@ -23,7 +23,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<RpcRequest> 
 
     static {
         requestHandler = new RequestHandler();
-        serviceProvider = new DefaultServiceRegistry();
+        serviceProvider = new ServiceProviderImpl();
     }
 
     @Override
