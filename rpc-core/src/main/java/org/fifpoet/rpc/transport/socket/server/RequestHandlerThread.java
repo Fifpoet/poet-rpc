@@ -1,17 +1,15 @@
-package org.fifpoet.rpc.socket.server;
+package org.fifpoet.rpc.transport.socket.server;
 
 import lombok.AllArgsConstructor;
 import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.entity.RpcResponse;
-import org.fifpoet.rpc.registry.ServiceRegistry;
+import org.fifpoet.rpc.provider.ServiceProvider;
 import org.fifpoet.rpc.server.RequestHandler;
 import org.fifpoet.util.LogUtil;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.Socket;
 
 /**
@@ -20,7 +18,7 @@ import java.net.Socket;
 @AllArgsConstructor
 public class RequestHandlerThread implements Runnable{
     private Socket socket;
-    private ServiceRegistry serviceRegistry;
+    private ServiceProvider serviceProvider;
     private RequestHandler requestHandler;
 
     @Override
@@ -30,7 +28,7 @@ public class RequestHandlerThread implements Runnable{
             RpcRequest rpcRequest = (RpcRequest) objectInputStream.readObject();
             // get method and invoke by reflection
             String interfaceName = rpcRequest.getInterfaceName();
-            Object service = serviceRegistry.getService(interfaceName);
+            Object service = serviceProvider.getServiceProvider(interfaceName);
             Object result = requestHandler.handle(rpcRequest, service);
             objectOutputStream.writeObject(RpcResponse.success(result));
             objectOutputStream.flush();

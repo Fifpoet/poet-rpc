@@ -1,21 +1,21 @@
-package org.fifpoet.rpc.registry;
+package org.fifpoet.rpc.provider;
 
 /**
- * universal service register interface
+ * reserve and provide the services.
  */
-public interface ServiceRegistry {
+public interface ServiceProvider {
     /**
      * register one service into registry
      * @param service service instance
      * @param <T> service class
      */
-    <T> void register(T service);
+    <T> void addServiceProvider(T service);
 
     /**
      * get service from map
      * @param serviceName name
      * @return service obj
      */
-    Object getService(String serviceName);
+    Object getServiceProvider(String serviceName);
 
 }

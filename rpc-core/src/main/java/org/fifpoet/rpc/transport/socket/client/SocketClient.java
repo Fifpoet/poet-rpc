@@ -1,4 +1,4 @@
-package org.fifpoet.rpc.socket.client;
+package org.fifpoet.rpc.transport.socket.client;
 
 
 import org.fifpoet.entity.RpcRequest;

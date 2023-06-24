@@ -1,4 +1,4 @@
-package org.fifpoet.rpc.netty.server;
+package org.fifpoet.rpc.transport.netty.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -10,7 +10,6 @@ import io.netty.handler.logging.LoggingHandler;
 import org.fifpoet.rpc.RpcServer;
 import org.fifpoet.rpc.codec.CommonDecoder;
 import org.fifpoet.rpc.codec.CommonEncoder;
-import org.fifpoet.rpc.serializer.JsonSerializer;
 import org.fifpoet.rpc.serializer.KryoSerializer;
 import org.fifpoet.util.LogUtil;
 

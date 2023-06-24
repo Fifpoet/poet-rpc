@@ -1,4 +1,4 @@
-package org.fifpoet.rpc.registry;
+package org.fifpoet.rpc.provider;
 
 import org.fifpoet.enumeration.RpcErrorCode;
 import org.fifpoet.exception.RpcException;
@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class DefaultServiceRegistry implements ServiceRegistry {
+public class DefaultServiceRegistry implements ServiceProvider {
 
     // service map & set. both concurrent safe.
     // make them static, insure all instance share one register center
@@ -17,7 +17,7 @@ public class DefaultServiceRegistry implements ServiceRegistry {
 
 
     @Override
-    public synchronized  <T> void register(T service) {
+    public synchronized  <T> void addServiceProvider (T service) {
         // get the whole name.   e.g. com.example.HelloService
         String serviceName = service.getClass().getCanonicalName();
         if (registeredService.contains(serviceName)) {
@@ -36,7 +36,7 @@ public class DefaultServiceRegistry implements ServiceRegistry {
     }
 
     @Override
-    public synchronized Object getService(String serviceName) {
+    public synchronized Object getServiceProvider(String serviceName) {
         Object service = serviceMap.get(serviceName);
         if (service == null) {
             throw new RpcException(RpcErrorCode.SERVICE_NOT_FOUND);

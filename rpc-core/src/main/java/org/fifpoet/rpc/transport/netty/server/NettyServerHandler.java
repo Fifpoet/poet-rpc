@@ -1,4 +1,4 @@
-package org.fifpoet.rpc.netty.server;
+package org.fifpoet.rpc.transport.netty.server;
 
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -9,8 +9,8 @@ import org.fifpoet.rpc.server.RequestHandler;
 import org.fifpoet.util.LogUtil;
 import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.entity.RpcResponse;
-import org.fifpoet.rpc.registry.DefaultServiceRegistry;
-import org.fifpoet.rpc.registry.ServiceRegistry;
+import org.fifpoet.rpc.provider.DefaultServiceRegistry;
+import org.fifpoet.rpc.provider.ServiceProvider;
 
 /**
  * handle Netty request
@@ -19,11 +19,11 @@ import org.fifpoet.rpc.registry.ServiceRegistry;
 public class NettyServerHandler extends SimpleChannelInboundHandler<RpcRequest> {
 
     private static final RequestHandler requestHandler;
-    private static final ServiceRegistry serviceRegistry;
+    private static final ServiceProvider serviceProvider;
 
     static {
         requestHandler = new RequestHandler();
-        serviceRegistry = new DefaultServiceRegistry();
+        serviceProvider = new DefaultServiceRegistry();
     }
 
     @Override
@@ -31,7 +31,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<RpcRequest> 
         try {
             LogUtil.INFO().info("netty receive req: {}", req);
             String interfaceName = req.getInterfaceName();
-            Object service = serviceRegistry.getService(interfaceName);
+            Object service = serviceProvider.getServiceProvider(interfaceName);
             Object result = requestHandler.handle(req, service);
             ChannelFuture future = ctx.writeAndFlush(RpcResponse.success(result));
             future.addListener(ChannelFutureListener.CLOSE);

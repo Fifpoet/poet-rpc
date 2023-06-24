@@ -1,7 +1,7 @@
-package org.fifpoet.rpc.socket.server;
+package org.fifpoet.rpc.transport.socket.server;
 
 import org.fifpoet.rpc.RpcServer;
-import org.fifpoet.rpc.registry.ServiceRegistry;
+import org.fifpoet.rpc.provider.ServiceProvider;
 import org.fifpoet.rpc.server.RequestHandler;
 import org.fifpoet.util.LogUtil;
 
@@ -17,10 +17,10 @@ public class SocketServer implements RpcServer {
     private static final int KEEP_ALIVE_TIME = 60;
     private static final int BLOCKING_QUEUE_CAPACITY = 100;
     private final ExecutorService threadPool;
-    private final ServiceRegistry serviceRegistry;
+    private final ServiceProvider serviceProvider;
 
-    public SocketServer(ServiceRegistry serviceRegistry) {
-        this.serviceRegistry = serviceRegistry;
+    public SocketServer(ServiceProvider serviceProvider) {
+        this.serviceProvider = serviceProvider;
         BlockingQueue<Runnable> workingQueue = new ArrayBlockingQueue<>(BLOCKING_QUEUE_CAPACITY);
         ThreadFactory threadFactory = Executors.defaultThreadFactory();
         threadPool = new ThreadPoolExecutor(CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.SECONDS, workingQueue, threadFactory);
@@ -31,9 +31,9 @@ public class SocketServer implements RpcServer {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             Socket socket;
             while((socket = serverSocket.accept()) != null) {
-                serviceRegistry.register(service);
+                serviceProvider.addServiceProvider(service);
                 LogUtil.INFO().info("accept client, IP：" + socket.getInetAddress());
-                threadPool.execute(new RequestHandlerThread(socket, serviceRegistry, new RequestHandler()));
+                threadPool.execute(new RequestHandlerThread(socket, serviceProvider, new RequestHandler()));
             }
             threadPool.shutdownNow();
         } catch (IOException e) {
