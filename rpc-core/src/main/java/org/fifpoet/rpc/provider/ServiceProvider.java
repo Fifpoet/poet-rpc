@@ -5,7 +5,7 @@ package org.fifpoet.rpc.provider;
  */
 public interface ServiceProvider {
     /**
-     * register one service into registry
+     * register one service into local registry
      * @param service service instance
      * @param <T> service class
      */

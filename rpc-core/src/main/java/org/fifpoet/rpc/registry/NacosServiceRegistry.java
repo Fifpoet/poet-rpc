@@ -37,7 +37,7 @@ public class NacosServiceRegistry implements ServiceRegistry{
     @Override
     public InetSocketAddress lookupService(String serviceName) {
         try {
-            // get all service provide(machine), and get the first.
+            // get all service provider(machine), and get the first.
             List<Instance> instances = namingService.getAllInstances(serviceName);
             Instance instance = instances.get(0);
             return new InetSocketAddress(instance.getIp(), instance.getPort());

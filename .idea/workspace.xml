@@ -5,24 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f8d0bab-89eb-4555-bb8f-cbdec81d6e75" name="Changes" comment="optimize project structure.">
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/registry/NacosServiceRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/registry/ServiceRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-test-client/src/main/java/org/fifpoet/test/TestSocketClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet/test/TestSocketServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/enumeration/RpcErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/enumeration/RpcErrorCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/RpcClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/RpcClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/RpcServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/RpcServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/provider/DefaultServiceRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/provider/ServiceProviderImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/server/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/handler/RequestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/provider/ServiceProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/provider/ServiceProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/registry/NacosServiceRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/registry/NacosServiceRegistry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/netty/client/NettyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/netty/client/NettyClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/netty/server/NettyServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/netty/server/NettyServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/netty/server/NettyServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/netty/server/NettyServerHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/socket/client/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/socket/client/SocketClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/socket/server/RequestHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/socket/server/RequestHandlerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/socket/server/SocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/socket/server/SocketServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-test-client/src/main/java/org/fifpoet/test/TestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-test-client/src/main/java/org/fifpoet/test/TestNettyClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet/test/TestServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet/test/TestNettyServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-test-client/src/main/java/org/fifpoet/test/TestNettyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-test-client/src/main/java/org/fifpoet/test/TestNettyClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-test-client/src/main/java/org/fifpoet/test/TestSocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-test-client/src/main/java/org/fifpoet/test/TestSocketClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
