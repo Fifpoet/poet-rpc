@@ -6,6 +6,7 @@ import java.util.List;
 
 public class RoundRobinLoadBalancer implements LoadBalancer {
     //TODO Dubbo hash
+    // TODO 根据服务器负载
     private int index = 0;
 
     @Override
