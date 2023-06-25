@@ -12,8 +12,7 @@ public class TestSocketServer {
 
     public static void main(String[] args) {
         HelloService helloService = new HelloServiceImpl();
-        SocketServer server = new SocketServer("127.0.0.1", 9000);
-        server.setSerializer(new KryoSerializer());
+        SocketServer server = new SocketServer("127.0.0.1", 9999);
         server.publishService(helloService, HelloService.class);
     }
 

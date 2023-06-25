@@ -8,7 +8,9 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.AttributeKey;
 import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.entity.RpcResponse;
+import org.fifpoet.enumeration.RegistryCenterCode;
 import org.fifpoet.enumeration.RpcErrorCode;
+import org.fifpoet.enumeration.SerializerCode;
 import org.fifpoet.exception.RpcException;
 import org.fifpoet.rpc.RpcClient;
 import org.fifpoet.rpc.codec.CommonDecoder;
@@ -23,8 +25,13 @@ import java.net.InetSocketAddress;
 public class NettyClient implements RpcClient {
 
     private static final Bootstrap bootstrap;
-    private CommonSerializer serializer;
-    private ServiceRegistry registry;
+    private final CommonSerializer serializer;
+    private final ServiceRegistry registry;
+
+    public NettyClient() {
+        this.serializer = CommonSerializer.getByCode(SerializerCode.DEFAULT.getCode());
+        this.registry = ServiceRegistry.getByCode(RegistryCenterCode.DEFAULT.getCode());
+    }
     public NettyClient(CommonSerializer serializer, ServiceRegistry registry) {
         this.serializer = serializer;
         this.registry = registry;
@@ -35,16 +42,16 @@ public class NettyClient implements RpcClient {
         bootstrap = new Bootstrap();
         bootstrap.group(group)
                 .channel(NioSocketChannel.class)
-                .option(ChannelOption.SO_KEEPALIVE, true);
-    }
-    @Override
-    public void setSerializer(CommonSerializer serializer) {
-        this.serializer = serializer;
-    }
-
-    @Override
-    public void setRegistry(ServiceRegistry registry) {
-        this.registry = registry;
+                .option(ChannelOption.SO_KEEPALIVE, true)
+                .handler(new ChannelInitializer<SocketChannel>() {
+                    @Override
+                    protected void initChannel(SocketChannel ch) {
+                        ChannelPipeline pipeline = ch.pipeline();
+                        pipeline.addLast(new CommonDecoder())
+                                .addLast(new CommonEncoder(new KryoSerializer()))
+                                .addLast(new NettyClientHandler());
+                    }
+                });
     }
 
     @Override
@@ -66,7 +73,6 @@ public class NettyClient implements RpcClient {
                         LogUtil.ERROR().error("Client send request failed: ", sendMsgFuture.cause());
                     }
                 });
-                Thread.sleep(1000);
                 channel.closeFuture().sync();
                 AttributeKey<RpcResponse<Object>> key = AttributeKey.valueOf("rpcResponse");
                 RpcResponse<Object> rpcResponse = channel.attr(key).get();

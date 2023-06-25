@@ -4,15 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * distinguish req & resp package
+ * service registry type
  */
-@AllArgsConstructor
 @Getter
-public enum PackageType {
-
-    REQUEST_PACK(0),
-    RESPONSE_PACK(1);
+@AllArgsConstructor
+public enum RegistryCenterCode {
+    DEFAULT(0),
+    NACOS(0);
 
     private final int code;
-
 }

@@ -6,10 +6,10 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ResponseCode {
-    SUCCESS(1000, "调用成功"),
-    FAIL(5000, "调用失败"),
-    NOT_FOUND_METHOD(5001,"未找到指定方法"),
-    NOT_FOUND_CLASS(5002,"未找到指定类");
+    SUCCESS(1000, "request success"),
+    FAIL(5000, "request failed"),
+    NOT_FOUND_METHOD(5001,"method not found"),
+    NOT_FOUND_CLASS(5002,"class not found");
 
 
     private final Integer code;

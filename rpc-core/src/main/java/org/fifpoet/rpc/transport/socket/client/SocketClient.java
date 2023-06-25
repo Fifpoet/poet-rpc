@@ -1,10 +1,10 @@
 package org.fifpoet.rpc.transport.socket.client;
 
-
-import lombok.NoArgsConstructor;
 import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.entity.RpcResponse;
+import org.fifpoet.enumeration.RegistryCenterCode;
 import org.fifpoet.enumeration.RpcErrorCode;
+import org.fifpoet.enumeration.SerializerCode;
 import org.fifpoet.exception.RpcException;
 import org.fifpoet.rpc.RpcClient;
 import org.fifpoet.rpc.registry.ServiceRegistry;
@@ -17,10 +17,13 @@ import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-@NoArgsConstructor
 public class SocketClient implements RpcClient {
-    private CommonSerializer serializer;
-    private ServiceRegistry registry;
+    private final CommonSerializer serializer;
+    private final ServiceRegistry registry;
+    public SocketClient() {
+        this.serializer = CommonSerializer.getByCode(SerializerCode.DEFAULT.getCode());
+        this.registry = ServiceRegistry.getByCode(RegistryCenterCode.DEFAULT.getCode());
+    }
     public SocketClient(CommonSerializer serializer, ServiceRegistry registry) {
         this.serializer = serializer;
         this.registry = registry;
@@ -46,14 +49,5 @@ public class SocketClient implements RpcClient {
             LogUtil.ERROR().error("Client send request failed");
             return null;
         }
-    }
-
-    @Override
-    public void setSerializer(CommonSerializer serializer) {
-        this.serializer = serializer;
-    }
-    @Override
-    public void setRegistry(ServiceRegistry registry) {
-        this.registry = registry;
     }
 }
