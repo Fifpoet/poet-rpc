@@ -12,7 +12,7 @@ public class ShutdownHook {
     }
 
     public void addClearAllHook() {
-        LogUtil.INFO().info("关闭后将自动注销所有服务");
+        LogUtil.INFO().info("add shutdown hook: clear all registry. ");
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             NacosUtil.clearRegistry();
             ThreadPoolFactory.shutDownAll();

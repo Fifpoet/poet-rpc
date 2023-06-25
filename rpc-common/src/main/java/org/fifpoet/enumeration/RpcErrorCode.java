@@ -13,9 +13,11 @@ public enum RpcErrorCode {
     UNKNOWN_SERIALIZER("unknown en/decoder"),
     UNKNOWN_PACKAGE_TYPE("unknown package type"),
     SERIALIZER_NOT_FOUND("serializer not found"),
-    RESPONSE_NOT_MATCH("响应与请求号不匹配"), //TODO
     FAILED_TO_CONNECT_TO_SERVICE_REGISTRY("failed to connect to service registry"),
-    REGISTER_SERVICE_FAILED("register service failed");
+    REGISTER_SERVICE_FAILED("register service failed"),
+    SERVICE_SCAN_PACKAGE_NOT_FOUND("@RpcServiceScan package not found"),
+    UNKNOWN_ERROR("unknown error")
+    ;
 
     private final String message;
 }

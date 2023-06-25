@@ -1,7 +1,7 @@
 package org.fifpoet.factory;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import org.slf4j.Logger;
+import org.fifpoet.util.LogUtil;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
@@ -9,22 +9,16 @@ import java.util.concurrent.*;
 
 /**
  * 创建 ThreadPool(线程池) 的工具类. 来自JavaGuide
- * TODO
  * @author shuang.kou
  * @createTime 2020年05月26日 16:00:00
  */
 public class ThreadPoolFactory {
-    /**
-     * 线程池参数
-     */
     private static final int CORE_POOL_SIZE = 10;
     private static final int MAXIMUM_POOL_SIZE_SIZE = 100;
     private static final int KEEP_ALIVE_TIME = 1;
     private static final int BLOCKING_QUEUE_CAPACITY = 100;
 
-    private final static Logger logger = LoggerFactory.getLogger(ThreadPoolFactory.class);
-
-    private static Map<String, ExecutorService> threadPollsMap = new ConcurrentHashMap<>();
+    private static final Map<String, ExecutorService> threadPollsMap = new ConcurrentHashMap<>();
 
     private ThreadPoolFactory() {
     }
@@ -45,15 +39,15 @@ public class ThreadPoolFactory {
     }
 
     public static void shutDownAll() {
-        logger.info("关闭所有线程池...");
+        LogUtil.INFO().info("close all thread pools...");
         threadPollsMap.entrySet().parallelStream().forEach(entry -> {
             ExecutorService executorService = entry.getValue();
             executorService.shutdown();
-            logger.info("关闭线程池 [{}] [{}]", entry.getKey(), executorService.isTerminated());
+            LogUtil.INFO().info("close thread pool [{}] [{}]", entry.getKey(), executorService.isTerminated());
             try {
-                executorService.awaitTermination(10, TimeUnit.SECONDS);
+                boolean res = executorService.awaitTermination(10, TimeUnit.SECONDS);
             } catch (InterruptedException ie) {
-                logger.error("关闭线程池失败！");
+                LogUtil.ERROR().error("close thread pool failed！");
                 executorService.shutdownNow();
             }
         });

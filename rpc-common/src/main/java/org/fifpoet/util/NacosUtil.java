@@ -37,7 +37,7 @@ public class NacosUtil {
         try {
             return NamingFactory.createNamingService(SERVER_ADDR);
         } catch (NacosException e) {
-            logger.error("连接到Nacos时有错误发生: ", e);
+            logger.error("error occurred connecting to nacos: ", e);
             throw new RpcException(RpcErrorCode.FAILED_TO_CONNECT_TO_SERVICE_REGISTRY);
         }
     }
@@ -61,7 +61,7 @@ public class NacosUtil {
                 try {
                     namingService.deregisterInstance(serviceName, host, port);
                 } catch (NacosException e) {
-                    logger.error("注销服务 {} 失败", serviceName, e);
+                    logger.error("uninstall service {} failed", serviceName, e);
                 }
             }
         }

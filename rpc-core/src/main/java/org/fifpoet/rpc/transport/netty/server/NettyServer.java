@@ -13,6 +13,7 @@ import org.fifpoet.exception.RpcException;
 import org.fifpoet.rpc.RpcServer;
 import org.fifpoet.rpc.codec.CommonDecoder;
 import org.fifpoet.rpc.codec.CommonEncoder;
+import org.fifpoet.rpc.handler.AnnotationHandler;
 import org.fifpoet.rpc.hook.ShutdownHook;
 import org.fifpoet.rpc.provider.ServiceProvider;
 import org.fifpoet.rpc.provider.ServiceProviderImpl;
@@ -24,12 +25,12 @@ import org.fifpoet.util.LogUtil;
 
 import java.net.InetSocketAddress;
 
-public class NettyServer implements RpcServer {
+public class NettyServer extends AnnotationHandler implements RpcServer {
     private final String host;
     private final int port;
     private final ServiceRegistry serviceRegistry;
     private final ServiceProvider serviceProvider;
-    private final CommonSerializer serializer;
+    private CommonSerializer serializer;
 
     public NettyServer(String host, int port) {
         this.host = host;
@@ -37,25 +38,24 @@ public class NettyServer implements RpcServer {
         this.serviceRegistry = new NacosServiceRegistry();
         this.serviceProvider = new ServiceProviderImpl();
         this.serializer = CommonSerializer.getByCode(SerializerCode.DEFAULT.getCode());
+        // check annotation
+        scanServices();
     }
 
     public NettyServer(String host, int port, CommonSerializer serializer) {
-        this.host = host;
-        this.port = port;
+        this(host, port);
         this.serializer = serializer;
-        this.serviceRegistry = new NacosServiceRegistry();
-        this.serviceProvider = new ServiceProviderImpl();
     }
 
     @Override
-    public <T> void publishService(Object service, Class<T> serviceClass) {
+    public <T> void publishService(Object service, String serviceClassName) {
         if(serializer == null) {
             LogUtil.ERROR().error("no serializer found");
             throw new RpcException(RpcErrorCode.SERIALIZER_NOT_FOUND);
         }
         serviceProvider.addServiceProvider(service);
         // TODO only register this machine
-        serviceRegistry.register(serviceClass.getCanonicalName(), new InetSocketAddress(host, port));
+        serviceRegistry.register(serviceClassName, new InetSocketAddress(host, port));
         start();
     }
 
