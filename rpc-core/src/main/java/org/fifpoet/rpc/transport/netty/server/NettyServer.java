@@ -12,6 +12,7 @@ import org.fifpoet.exception.RpcException;
 import org.fifpoet.rpc.RpcServer;
 import org.fifpoet.rpc.codec.CommonDecoder;
 import org.fifpoet.rpc.codec.CommonEncoder;
+import org.fifpoet.rpc.hook.ShutdownHook;
 import org.fifpoet.rpc.provider.ServiceProvider;
 import org.fifpoet.rpc.provider.ServiceProviderImpl;
 import org.fifpoet.rpc.registry.NacosServiceRegistry;
@@ -56,6 +57,8 @@ public class NettyServer implements RpcServer {
 
     @Override
     public void start() {
+        // Shutdown old service in center
+        ShutdownHook.getShutdownHook().addClearAllHook();
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {

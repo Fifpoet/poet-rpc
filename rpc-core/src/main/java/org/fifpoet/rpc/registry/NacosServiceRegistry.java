@@ -6,6 +6,7 @@ import com.alibaba.nacos.api.naming.NamingService;
 import com.alibaba.nacos.api.naming.pojo.Instance;
 import org.fifpoet.enumeration.RpcErrorCode;
 import org.fifpoet.exception.RpcException;
+import org.fifpoet.rpc.balancer.RoundRobinLoadBalancer;
 import org.fifpoet.util.LogUtil;
 
 import java.net.InetSocketAddress;
@@ -39,7 +40,7 @@ public class NacosServiceRegistry implements ServiceRegistry{
         try {
             // get all service provider(machine), and get the first.
             List<Instance> instances = namingService.getAllInstances(serviceName);
-            Instance instance = instances.get(0);
+            Instance instance = new RoundRobinLoadBalancer().select(instances);
             return new InetSocketAddress(instance.getIp(), instance.getPort());
         } catch (NacosException e) {
             LogUtil.ERROR().error("error lookup a service:", e);
