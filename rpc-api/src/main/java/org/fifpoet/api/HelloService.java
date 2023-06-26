@@ -1,5 +1,5 @@
 package org.fifpoet.api;
 
 public interface HelloService {
-    String hello(HelloParam param);
+    HelloResult hello(HelloParam param);
 }

@@ -1,6 +1,7 @@
 package org.fifpoet.test;
 
 import org.fifpoet.api.HelloParam;
+import org.fifpoet.api.HelloResult;
 import org.fifpoet.api.HelloService;
 import org.fifpoet.rpc.annotation.RpcService;
 import org.slf4j.Logger;
@@ -15,9 +16,9 @@ public class HelloServiceImpl implements HelloService {
     private static final Logger logger = LoggerFactory.getLogger(HelloServiceImpl.class);
 
     @Override
-    public String hello(HelloParam param) {
+    public HelloResult hello(HelloParam param) {
         logger.info("receive message：{}", param.getMessage());
-        return "return id=" + param.getId();
+        return new HelloResult(999, "return :" + param.getId());
     }
 
 }
