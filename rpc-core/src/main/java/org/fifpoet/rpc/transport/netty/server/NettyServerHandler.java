@@ -11,6 +11,7 @@ import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.entity.RpcResponse;
 import org.fifpoet.rpc.provider.ServiceProviderImpl;
 import org.fifpoet.rpc.provider.ServiceProvider;
+import org.fifpoet.util.ServiceNameUtil;
 
 /**
  * handle Netty request
@@ -30,8 +31,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<RpcRequest> 
     protected void channelRead0(ChannelHandlerContext ctx, RpcRequest req) throws Exception {
         try {
             LogUtil.INFO().info("netty receive req: {}", req);
-            String interfaceName = req.getInterfaceName();
-            Object service = serviceProvider.getServiceProvider(interfaceName);
+            Object service = serviceProvider.getServiceProvider(ServiceNameUtil.getFullName(req));
             Object result = requestHandler.handle(req, service);
             ChannelFuture future = ctx.writeAndFlush(RpcResponse.success(result));
             future.addListener(ChannelFutureListener.CLOSE);

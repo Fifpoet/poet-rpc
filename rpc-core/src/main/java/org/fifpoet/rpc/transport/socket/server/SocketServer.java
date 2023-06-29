@@ -1,21 +1,18 @@
 package org.fifpoet.rpc.transport.socket.server;
 
+import org.fifpoet.entity.ServiceConfig;
 import org.fifpoet.enumeration.RegistryCenterCode;
-import org.fifpoet.enumeration.RpcErrorCode;
 import org.fifpoet.enumeration.SerializerCode;
-import org.fifpoet.exception.RpcException;
 import org.fifpoet.rpc.RpcServer;
 import org.fifpoet.rpc.handler.AnnotationHandler;
 import org.fifpoet.rpc.provider.ServiceProvider;
 import org.fifpoet.rpc.provider.ServiceProviderImpl;
-import org.fifpoet.rpc.registry.NacosServiceRegistry;
 import org.fifpoet.rpc.registry.ServiceRegistry;
 import org.fifpoet.rpc.serializer.CommonSerializer;
-import org.fifpoet.rpc.serializer.KryoSerializer;
 import org.fifpoet.rpc.handler.RequestHandler;
 import org.fifpoet.util.LogUtil;
+import org.fifpoet.util.ServiceNameUtil;
 
-import javax.xml.ws.Service;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -66,9 +63,9 @@ public class SocketServer extends AnnotationHandler implements RpcServer {
     }
 
     @Override
-    public <T> void publishService(Object service, String serviceClassName) {
-        serviceProvider.addServiceProvider(service);
-        serviceRegistry.register(serviceClassName, new InetSocketAddress(host, port));
+    public <T> void publishService(ServiceConfig config) {
+        serviceProvider.addServiceProvider(config);
+        serviceRegistry.register(ServiceNameUtil.getFullInterfaceName(config), new InetSocketAddress(host, port));
         start();
     }
     

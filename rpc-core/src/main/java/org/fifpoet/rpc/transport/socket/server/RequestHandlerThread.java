@@ -7,6 +7,7 @@ import org.fifpoet.rpc.provider.ServiceProvider;
 import org.fifpoet.rpc.serializer.CommonSerializer;
 import org.fifpoet.rpc.handler.RequestHandler;
 import org.fifpoet.util.LogUtil;
+import org.fifpoet.util.ServiceNameUtil;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -29,7 +30,7 @@ public class RequestHandlerThread implements Runnable{
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream())) {
             RpcRequest rpcRequest = (RpcRequest) objectInputStream.readObject();
             // get method and invoke by reflection
-            String interfaceName = rpcRequest.getInterfaceName();
+            String interfaceName = ServiceNameUtil.getFullName(rpcRequest);
             Object service = serviceProvider.getServiceProvider(interfaceName);
             Object result = requestHandler.handle(rpcRequest, service);
             LogUtil.INFO().info("invoke result: {}", result);

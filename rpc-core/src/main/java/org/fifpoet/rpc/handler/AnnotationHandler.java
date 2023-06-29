@@ -1,5 +1,6 @@
 package org.fifpoet.rpc.handler;
 
+import org.fifpoet.entity.ServiceConfig;
 import org.fifpoet.enumeration.RpcErrorCode;
 import org.fifpoet.exception.RpcException;
 import org.fifpoet.rpc.RpcServer;
@@ -11,7 +12,8 @@ import org.fifpoet.util.ReflectUtil;
 import java.util.Set;
 
 public abstract class AnnotationHandler implements RpcServer {
-    public void scanServices() {
+    public void scanServices()  {
+        // get the bottom of invoke stack
         String mainClassName = ReflectUtil.getStackTrace();
         Class<?> startClass;
         try {
@@ -24,29 +26,24 @@ public abstract class AnnotationHandler implements RpcServer {
             LogUtil.INFO().error("出现未知错误");
             throw new RpcException(RpcErrorCode.UNKNOWN_ERROR);
         }
+
         String basePackage = startClass.getAnnotation(RpcServiceScan.class).value();
         if("".equals(basePackage)) {
             basePackage = mainClassName.substring(0, mainClassName.lastIndexOf("."));
         }
+        // traverse the package to find the annotated class
         Set<Class<?>> classSet = ReflectUtil.getClasses(basePackage);
         for(Class<?> clazz : classSet) {
             if(clazz.isAnnotationPresent(RpcService.class)) {
-                String serviceName = clazz.getAnnotation(RpcService.class).name();
-                Object obj;
+                //instance
+                Object implInstance;
                 try {
-                    obj = clazz.newInstance();
+                    implInstance = clazz.newInstance();
                 } catch (InstantiationException | IllegalAccessException e) {
-                    LogUtil.INFO().error("创建 " + clazz + " 时有错误发生");
-                    continue;
+                    throw new RuntimeException(e);
                 }
-                if("".equals(serviceName)) {
-                    Class<?>[] interfaces = clazz.getInterfaces();
-                    for (Class<?> oneInterface: interfaces){
-                        publishService(obj, oneInterface.getCanonicalName());
-                    }
-                } else {
-                    publishService(obj, serviceName);
-                }
+                RpcService anno = clazz.getAnnotation(RpcService.class);
+                publishService(new ServiceConfig(anno.version(), implInstance, anno.impl()));
             }
         }
     }

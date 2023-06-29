@@ -7,6 +7,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import org.fifpoet.entity.ServiceConfig;
 import org.fifpoet.enumeration.RpcErrorCode;
 import org.fifpoet.enumeration.SerializerCode;
 import org.fifpoet.exception.RpcException;
@@ -20,8 +21,8 @@ import org.fifpoet.rpc.provider.ServiceProviderImpl;
 import org.fifpoet.rpc.registry.NacosServiceRegistry;
 import org.fifpoet.rpc.registry.ServiceRegistry;
 import org.fifpoet.rpc.serializer.CommonSerializer;
-import org.fifpoet.rpc.serializer.KryoSerializer;
 import org.fifpoet.util.LogUtil;
+import org.fifpoet.util.ServiceNameUtil;
 
 import java.net.InetSocketAddress;
 
@@ -48,14 +49,13 @@ public class NettyServer extends AnnotationHandler implements RpcServer {
     }
 
     @Override
-    public <T> void publishService(Object service, String serviceClassName) {
+    public <T> void publishService(ServiceConfig config) {
         if(serializer == null) {
             LogUtil.ERROR().error("no serializer found");
             throw new RpcException(RpcErrorCode.SERIALIZER_NOT_FOUND);
         }
-        serviceProvider.addServiceProvider(service);
-        // TODO only register this machine
-        serviceRegistry.register(serviceClassName, new InetSocketAddress(host, port));
+        serviceProvider.addServiceProvider(config);
+        serviceRegistry.register(ServiceNameUtil.getFullInterfaceName(config), new InetSocketAddress(host, port));
         start();
     }
 

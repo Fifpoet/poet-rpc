@@ -4,6 +4,7 @@ import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.entity.RpcResponse;
 import org.fifpoet.enumeration.ResponseCode;
 import org.fifpoet.util.LogUtil;
+import org.fifpoet.util.ServiceNameUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -14,7 +15,7 @@ public class RequestHandler {
         Object result = null;
         try {
             result = invokeTargetMethod(rpcRequest, service);
-            LogUtil.INFO().info("service:{} invoke method success:{}", rpcRequest.getInterfaceName(), rpcRequest.getMethodName());
+            LogUtil.INFO().info("service:{} invoke method success:{}", ServiceNameUtil.getFullName(rpcRequest), rpcRequest.getMethodName());
         } catch (IllegalAccessException | InvocationTargetException e) {
             LogUtil.ERROR().error("invoke target method error：", e);
         } return result;

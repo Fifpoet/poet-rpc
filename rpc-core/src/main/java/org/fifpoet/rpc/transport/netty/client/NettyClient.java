@@ -60,7 +60,7 @@ public class NettyClient implements RpcClient {
             LogUtil.ERROR().error("serializer not found");
             throw new RpcException(RpcErrorCode.SERIALIZER_NOT_FOUND);
         }
-        InetSocketAddress server = registry.lookupService(rpcRequest.getInterfaceName());
+        InetSocketAddress server = registry.lookupService(getFullServiceName(rpcRequest));
         try {
             ChannelFuture connFuture = bootstrap.connect(server).sync();
             LogUtil.INFO().info("client connected to host {}:{}", server.getHostName(), server.getPort());
@@ -82,5 +82,22 @@ public class NettyClient implements RpcClient {
             LogUtil.ERROR().error("send request or get response failed: ", e);
         }
         return null;
+    }
+
+    private String getFullServiceName(RpcRequest req) {
+        StringBuilder res = new StringBuilder(req.getServiceName());
+        // if impl in annotation is not null, append it.
+        String impl = req.getImpl();
+        if (impl != null && impl.length() != 0) {
+            res.append("-").append(impl);
+        }
+        res.append("-");
+        String version = req.getVersion();
+        if (version == null || version.equals("")) {
+            res.append("0");
+        }else {
+            res.append(version);
+        }
+        return res.toString();
     }
 }

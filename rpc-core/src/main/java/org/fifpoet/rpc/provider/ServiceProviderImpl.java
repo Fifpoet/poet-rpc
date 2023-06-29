@@ -1,8 +1,10 @@
 package org.fifpoet.rpc.provider;
 
+import org.fifpoet.entity.ServiceConfig;
 import org.fifpoet.enumeration.RpcErrorCode;
 import org.fifpoet.exception.RpcException;
 import org.fifpoet.util.LogUtil;
+import org.fifpoet.util.ServiceNameUtil;
 
 import java.util.Map;
 import java.util.Set;
@@ -20,22 +22,16 @@ public class ServiceProviderImpl implements ServiceProvider {
 
 
     @Override
-    public synchronized  <T> void addServiceProvider (T service) {
-        // get the whole name.   e.g. com.example.HelloService
-        String serviceName = service.getClass().getCanonicalName();
+    public synchronized  <T> void addServiceProvider (ServiceConfig config) {
+        // local Service Name -> impl obj
+        // remote Register Center -> iface name
+        String serviceName = ServiceNameUtil.getFullInterfaceName(config);
         if (registeredService.contains(serviceName)) {
             return;
         }
         registeredService.add(serviceName);
-        Class<?>[] interfaces = service.getClass().getInterfaces();
-        if(interfaces.length == 0) {
-            throw new RpcException(RpcErrorCode.SERVICE_NOT_IMPLEMENT_ANY_INTERFACE);
-        }
-        //TODO register all interface->service into map.
-        for(Class<?> i : interfaces) {
-            serviceMap.put(i.getCanonicalName(), service);
-        }
-        LogUtil.INFO().info("service register. {}. service: {}", interfaces, serviceName);
+        serviceMap.put(serviceName, config.getService());
+        LogUtil.INFO().info("service register. {}. service: {}", serviceName, config.getService());
     }
 
     @Override
@@ -46,4 +42,6 @@ public class ServiceProviderImpl implements ServiceProvider {
         }
         return service;
     }
+
+
 }

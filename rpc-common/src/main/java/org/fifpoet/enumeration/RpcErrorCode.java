@@ -16,6 +16,7 @@ public enum RpcErrorCode {
     FAILED_TO_CONNECT_TO_SERVICE_REGISTRY("failed to connect to service registry"),
     REGISTER_SERVICE_FAILED("register service failed"),
     SERVICE_SCAN_PACKAGE_NOT_FOUND("@RpcServiceScan package not found"),
+    SERVICE_REGISTER_UNCLEAR("implement has more than one interface and can't determine interface"),
     UNKNOWN_ERROR("unknown error")
     ;
 

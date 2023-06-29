@@ -10,6 +10,7 @@ import org.fifpoet.rpc.RpcClient;
 import org.fifpoet.rpc.registry.ServiceRegistry;
 import org.fifpoet.rpc.serializer.CommonSerializer;
 import org.fifpoet.util.LogUtil;
+import org.fifpoet.util.ServiceNameUtil;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -35,7 +36,7 @@ public class SocketClient implements RpcClient {
             LogUtil.ERROR().error("serializer not found");
             throw new RpcException(RpcErrorCode.SERIALIZER_NOT_FOUND);
         }
-        InetSocketAddress server = registry.lookupService(request.getInterfaceName());
+        InetSocketAddress server = registry.lookupService(ServiceNameUtil.getFullName(request));
         try (Socket socket = new Socket()) {
             socket.connect(server);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());

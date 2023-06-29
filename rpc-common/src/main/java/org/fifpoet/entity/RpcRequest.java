@@ -15,7 +15,7 @@ public class RpcRequest implements Serializable {
     /**
      * 待调用接口名称
      */
-    private String interfaceName;
+    private String serviceName;
 
     /**
      * 待调用方法名称
@@ -31,4 +31,13 @@ public class RpcRequest implements Serializable {
      * 调用方法的参数类型
      */
     private Class<?>[] paramTypes;
+
+    /**
+     * 指定的Server版本
+     */
+    private String version;
+    /**
+     * 指定实现类标识
+     */
+    private String impl;
 }
