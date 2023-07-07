@@ -1,13 +1,10 @@
 package org.fifpoet.rpc.registry;
 
 import com.alibaba.nacos.api.exception.NacosException;
-import com.alibaba.nacos.api.naming.NamingFactory;
-import com.alibaba.nacos.api.naming.NamingService;
 import com.alibaba.nacos.api.naming.pojo.Instance;
 import org.fifpoet.enumeration.RpcErrorCode;
 import org.fifpoet.exception.RpcException;
 import org.fifpoet.rpc.balancer.RandomLoadBalancer;
-import org.fifpoet.rpc.balancer.RoundRobinLoadBalancer;
 import org.fifpoet.util.LogUtil;
 import org.fifpoet.util.NacosUtil;
 

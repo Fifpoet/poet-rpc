@@ -15,6 +15,7 @@ import org.fifpoet.rpc.serializer.CommonSerializer;
 import java.util.List;
 
 /**
+ * codec -> coder & decoder
  * common decoder extends from netty
  * +---------------+---------------+-----------------+-------------+
  * |  Magic Number |  Package Type | Serializer Type | Data Length |

@@ -15,7 +15,6 @@ import org.fifpoet.util.ServiceNameUtil;
 
 /**
  * handle Netty request
- * @author ziyang
  */
 public class NettyServerHandler extends SimpleChannelInboundHandler<RpcRequest> {
 
