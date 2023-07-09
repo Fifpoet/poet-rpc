@@ -1,6 +1,7 @@
 package org.fifpoet.rpc.balancer;
 
 import com.alibaba.nacos.api.naming.pojo.Instance;
+import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.util.LogUtil;
 
 import java.util.List;
@@ -11,7 +12,8 @@ import java.util.Random;
  */
 public class WeightedLoadBalancer implements LoadBalancer {
     @Override
-    public Instance select(List<Instance> instances) {
+    public Instance select(List<Instance> instances, RpcRequest request) {
+        instances = filterUnhealthyNode(instances);
         //weight range from 1 to 10000
         double total = instances.stream().mapToDouble(Instance::getWeight).sum();
         double randomVal = new Random().nextDouble() * total;

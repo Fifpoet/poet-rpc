@@ -2,8 +2,10 @@ package org.fifpoet.rpc.registry;
 
 import com.alibaba.nacos.api.exception.NacosException;
 import com.alibaba.nacos.api.naming.pojo.Instance;
+import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.enumeration.RpcErrorCode;
 import org.fifpoet.exception.RpcException;
+import org.fifpoet.rpc.balancer.ConsistentHashLoadBalance;
 import org.fifpoet.rpc.balancer.RandomLoadBalancer;
 import org.fifpoet.util.LogUtil;
 import org.fifpoet.util.NacosUtil;
@@ -24,11 +26,11 @@ public class NacosServiceRegistry implements ServiceRegistry{
     }
 
     @Override
-    public InetSocketAddress lookupService(String serviceName) {
+    public InetSocketAddress lookupService(String serviceName, RpcRequest request) {
         try {
             // get all service provider(machine), and get the first.
             List<Instance> instances = NacosUtil.getAllInstance(serviceName);
-            Instance instance = new RandomLoadBalancer().select(instances);
+            Instance instance = new ConsistentHashLoadBalance().select(instances, request);
             return new InetSocketAddress(instance.getIp(), instance.getPort());
         } catch (NacosException e) {
             LogUtil.ERROR().error("error lookup a service:", e);

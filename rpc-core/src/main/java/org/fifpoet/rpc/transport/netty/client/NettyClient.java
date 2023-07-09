@@ -60,7 +60,7 @@ public class NettyClient implements RpcClient {
             LogUtil.ERROR().error("serializer not found");
             throw new RpcException(RpcErrorCode.SERIALIZER_NOT_FOUND);
         }
-        InetSocketAddress server = registry.lookupService(getFullServiceName(rpcRequest));
+        InetSocketAddress server = registry.lookupService(getFullServiceName(rpcRequest), rpcRequest);
         try {
             ChannelFuture connFuture = bootstrap.connect(server).sync();
             LogUtil.INFO().info("client connected to host {}:{}", server.getHostName(), server.getPort());

@@ -1,5 +1,7 @@
 package org.fifpoet.rpc.registry;
 
+import org.fifpoet.entity.RpcRequest;
+
 import java.net.InetSocketAddress;
 
 /**
@@ -8,7 +10,7 @@ import java.net.InetSocketAddress;
 public interface ServiceRegistry {
 
     void register(String serviceName, InetSocketAddress inetSocketAddress);
-    InetSocketAddress lookupService(String serviceName);
+    InetSocketAddress lookupService(String serviceName, RpcRequest request);
     static ServiceRegistry getByCode(int code) {
         switch (code) {
             case 0:
