@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 使用ProtoBuf的序列化器
  * TODO ProtoBuf与自实现的性能区别
  */
-public class ProtobufSerializer implements CommonSerializer {
+public class ProtostuffSerializer implements CommonSerializer {
 
     private final LinkedBuffer buffer = LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE);
     private final Map<Class<?>, Schema<?>> schemaCache = new ConcurrentHashMap<>();

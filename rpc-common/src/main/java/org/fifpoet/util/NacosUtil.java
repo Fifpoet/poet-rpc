@@ -11,13 +11,11 @@ import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 /**
  * 管理Nacos连接等工具类
- * @author ziyang
  */
 public class NacosUtil {
 

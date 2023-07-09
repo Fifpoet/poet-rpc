@@ -1,8 +1,11 @@
 package org.fifpoet.rpc.serializer;
 
+import org.fifpoet.spi.SPI;
+
 /**
  * a universal serialize & deserialize interface
  */
+@SPI
 public interface CommonSerializer {
 
     // convert obj to byte array
