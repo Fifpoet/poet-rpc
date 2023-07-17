@@ -1,7 +1,8 @@
-package org.fifpoet.rpc;
+package org.fifpoet.rpc.transport.netty.client;
 
 import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.entity.ServiceConfig;
+import org.fifpoet.rpc.RpcClient;
 import org.fifpoet.util.LogUtil;
 
 import java.lang.reflect.InvocationHandler;

@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f8d0bab-89eb-4555-bb8f-cbdec81d6e75" name="Changes" comment="add ConsistentHashLoadBalance">
-      <change afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/spi/ExtensionLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/spi/Holder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/spi/SPI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/resources/META-INF/extensions/org.fifpoet.rpc.serializer.CommonSerializer" afterDir="false" />
+    <list default="true" id="6f8d0bab-89eb-4555-bb8f-cbdec81d6e75" name="Changes" comment="add SPI to config impl class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/util/NacosUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/util/NacosUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/serializer/CommonSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/serializer/CommonSerializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/serializer/ProtobufSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/serializer/ProtostuffSerializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-test-client/src/main/java/org/fifpoet/test/TestNettyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-test-client/src/main/java/org/fifpoet/test/TestNettyClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet/test/TestNettyServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet/test/TestNettyServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -292,7 +283,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688879184818</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="add SPI to config impl class">
+      <created>1688915849666</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1688915849666</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -324,6 +322,7 @@
     <MESSAGE value="test nested object serialization." />
     <MESSAGE value="support multi-implementation of remote service." />
     <MESSAGE value="add ConsistentHashLoadBalance" />
-    <option name="LAST_COMMIT_MESSAGE" value="add ConsistentHashLoadBalance" />
+    <MESSAGE value="add SPI to config impl class" />
+    <option name="LAST_COMMIT_MESSAGE" value="add SPI to config impl class" />
   </component>
 </project>
