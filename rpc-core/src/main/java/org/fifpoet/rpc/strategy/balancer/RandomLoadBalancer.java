@@ -1,11 +1,10 @@
-package org.fifpoet.rpc.balancer;
+package org.fifpoet.rpc.strategy.balancer;
 
 import com.alibaba.nacos.api.naming.pojo.Instance;
 import org.fifpoet.entity.RpcRequest;
 
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class RandomLoadBalancer implements LoadBalancer {
     @Override

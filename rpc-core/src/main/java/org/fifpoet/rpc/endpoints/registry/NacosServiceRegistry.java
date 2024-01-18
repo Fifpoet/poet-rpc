@@ -1,19 +1,19 @@
-package org.fifpoet.rpc.registry;
+package org.fifpoet.rpc.endpoints.registry;
 
 import com.alibaba.nacos.api.exception.NacosException;
 import com.alibaba.nacos.api.naming.pojo.Instance;
 import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.enumeration.RpcErrorCode;
 import org.fifpoet.exception.RpcException;
-import org.fifpoet.rpc.balancer.ConsistentHashLoadBalance;
-import org.fifpoet.rpc.balancer.RandomLoadBalancer;
+import org.fifpoet.rpc.strategy.balancer.ConsistentHashLoadBalance;
 import org.fifpoet.util.LogUtil;
 import org.fifpoet.util.NacosUtil;
 
 import java.net.InetSocketAddress;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class NacosServiceRegistry implements ServiceRegistry{
+public class NacosServiceRegistry implements ServiceRegistry {
 
     @Override
     public void register(String serviceName, InetSocketAddress inetSocketAddress) {
@@ -26,12 +26,12 @@ public class NacosServiceRegistry implements ServiceRegistry{
     }
 
     @Override
-    public InetSocketAddress lookupService(String serviceName, RpcRequest request) {
+    public List<Instance> getAllInstance(String serviceName) {
         try {
-            // get all service provider(machine), and get the first.
+            // get all service provider(machine)
             List<Instance> instances = NacosUtil.getAllInstance(serviceName);
-            Instance instance = new ConsistentHashLoadBalance().select(instances, request);
-            return new InetSocketAddress(instance.getIp(), instance.getPort());
+            // filter unhealthy ins
+            return instances.stream().filter(Instance::isHealthy).filter(Instance::isEnabled).collect(Collectors.toList());
         } catch (NacosException e) {
             LogUtil.ERROR().error("error lookup a service:", e);
         }

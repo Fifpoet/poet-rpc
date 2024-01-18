@@ -1,7 +1,6 @@
 package org.fifpoet.rpc.transport.netty.client;
 
 import org.fifpoet.entity.RpcRequest;
-import org.fifpoet.entity.ServiceConfig;
 import org.fifpoet.rpc.RpcClient;
 import org.fifpoet.util.LogUtil;
 
@@ -11,13 +10,9 @@ import java.lang.reflect.Proxy;
 
 public class RpcClientProxy implements InvocationHandler {
     private final RpcClient rpcClient;
-    private final String version;
-    private final String impl;
 
-    public RpcClientProxy(RpcClient rpcClient, String version, String impl) {
+    public RpcClientProxy(RpcClient rpcClient) {
         this.rpcClient = rpcClient;
-        this.version = version;
-        this.impl = impl;
     }
 
     @SuppressWarnings("unchecked")
@@ -29,7 +24,7 @@ public class RpcClientProxy implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) {
         // req.ServiceName: name of Stub(iface)
         RpcRequest rpcRequest = new RpcRequest(method.getDeclaringClass().getName(),
-                method.getName(), args, method.getParameterTypes(), version, impl);
+                method.getName(), args, method.getParameterTypes());
         LogUtil.INFO().info("request param: {}", rpcRequest);
         return rpcClient.sendRequest(rpcRequest);
     }

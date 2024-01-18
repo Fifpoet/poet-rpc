@@ -1,4 +1,4 @@
-package org.fifpoet.rpc.balancer;
+package org.fifpoet.rpc.strategy.balancer;
 
 import com.alibaba.nacos.api.naming.pojo.Instance;
 import org.fifpoet.entity.RpcRequest;

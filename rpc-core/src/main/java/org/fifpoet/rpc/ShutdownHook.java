@@ -1,4 +1,4 @@
-package org.fifpoet.rpc.hook;
+package org.fifpoet.rpc;
 
 import org.fifpoet.factory.ThreadPoolFactory;
 import org.fifpoet.util.LogUtil;

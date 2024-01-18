@@ -7,10 +7,7 @@ import org.fifpoet.rpc.annotation.RpcService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author ziyang
- */
-@RpcService
+@RpcService(group = "MY_RPC")
 public class HelloServiceImpl implements HelloService {
 
     private static final Logger logger = LoggerFactory.getLogger(HelloServiceImpl.class);
@@ -18,7 +15,7 @@ public class HelloServiceImpl implements HelloService {
     @Override
     public HelloResult hello(HelloParam param) {
         logger.info("receive message：{}", param.getMessage());
-        return new HelloResult(999, "return :" + param.getId());
+        return new HelloResult(999, "return: " + param.getId());
     }
 
 }

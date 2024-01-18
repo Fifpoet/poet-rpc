@@ -5,7 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f8d0bab-89eb-4555-bb8f-cbdec81d6e75" name="Changes" comment="add SPI to config impl class">
+      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/endpoints/ServiceEndpoints.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/strategy/router/CommonRouter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/strategy/router/IPRouter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/entity/RpcRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/entity/RpcRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/entity/ServiceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/entity/Endpoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/util/NacosUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/util/NacosUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/util/ServiceNameUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-common/src/main/java/org/fifpoet/util/ServiceNameUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/RpcClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/RpcClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/RpcServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/RpcServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/annotation/RpcService.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/annotation/RpcService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/balancer/ConsistentHashLoadBalance.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/strategy/balancer/ConsistentHashLoadBalance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/balancer/LoadBalancer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/strategy/balancer/LoadBalancer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/balancer/RandomLoadBalancer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/strategy/balancer/RandomLoadBalancer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/balancer/WeightedLoadBalancer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/strategy/balancer/WeightedLoadBalancer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/handler/AnnotationHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/handler/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/RequestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/hook/ShutdownHook.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/ShutdownHook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/provider/ServiceProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/provider/ServiceProviderImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/registry/NacosServiceRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/endpoints/registry/NacosServiceRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/registry/ServiceRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/endpoints/registry/ServiceRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/serializer/CommonSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/serializer/CommonSerializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/netty/client/NettyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/netty/client/NettyClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/netty/client/RpcClientProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/netty/client/RpcClientProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/netty/server/NettyServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/netty/server/NettyServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/netty/server/NettyServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/netty/server/NettyServerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/socket/client/SocketClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/socket/server/RequestHandlerThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-core/src/main/java/org/fifpoet/rpc/transport/socket/server/SocketServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-test-client/src/main/java/org/fifpoet/test/TestNettyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-test-client/src/main/java/org/fifpoet/test/TestNettyClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-test-client/src/main/java/org/fifpoet/test/TestSocketClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet/test/HelloServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet/test/HelloServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet/test/SecondImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet/test/TestSocketServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet/test/netty/NtClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rpc-test-server/src/main/java/org/fifpoet/test/netty/NtClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +52,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="AnnotationType" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -32,16 +69,12 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2RNVk7xrZJjVmyIb8SpLGE4Z0Tw" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -49,27 +82,29 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "temurin-1.8",
-    "last_opened_file_path": "/Users/zhaoce/workspace/study/poet-rpc/rpc-core/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "spring.configuration.checksum": "ef9eb08e151a912b97e44d6e2d11d830",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;temurin-1.8&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/fifpoet/Desktop/java_project/poet-rpc&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;shared-indexes&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;ef9eb08e151a912b97e44d6e2d11d830&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.fifpoet.rpc.registry" />
       <recent name="org.fifpoet.rpc.netty.client" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -87,7 +122,7 @@
       <recent name="org.fifpoet.test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TestNettyServer">
+  <component name="RunManager" selected="Application.TestNettyClient">
     <configuration name="NtClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.fifpoet.test.netty.NtClient" />
       <module name="rpc-test-server" />
@@ -140,33 +175,65 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestSocketServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.fifpoet.test.TestSocketServer" />
-      <module name="rpc-test-server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.fifpoet.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="Docker Image" type="docker-deploy" factoryName="docker-image" temporary="true" server-name="Docker">
+      <deployment type="docker-image">
+        <settings>
+          <option name="imageTag" value="nacos/nacos-server:latest" />
+          <option name="containerName" value="nacos" />
+          <option name="envVars">
+            <list>
+              <DockerEnvVarImpl>
+                <option name="name" value="PREFER_HOST_MODE" />
+                <option name="value" value="hostname" />
+              </DockerEnvVarImpl>
+              <DockerEnvVarImpl>
+                <option name="name" value="MODE" />
+                <option name="value" value="standalone" />
+              </DockerEnvVarImpl>
+              <DockerEnvVarImpl>
+                <option name="name" value="NACOS_AUTH_ENABLE" />
+                <option name="value" value="false" />
+              </DockerEnvVarImpl>
+            </list>
+          </option>
+          <option name="portBindings">
+            <list>
+              <DockerPortBindingImpl>
+                <option name="containerPort" value="8848" />
+              </DockerPortBindingImpl>
+              <DockerPortBindingImpl>
+                <option name="containerPort" value="9848" />
+              </DockerPortBindingImpl>
+              <DockerPortBindingImpl>
+                <option name="containerPort" value="9849" />
+              </DockerPortBindingImpl>
+            </list>
+          </option>
+          <option name="commandLineOptions" value="" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-image" temporary="true">
+      <deployment type="docker-image">
+        <settings />
+      </deployment>
+      <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Application.NtClient" />
       <item itemvalue="Application.NtServer" />
       <item itemvalue="Application.TestNettyClient" />
       <item itemvalue="Application.TestNettyServer" />
-      <item itemvalue="Application.TestSocketServer" />
+      <item itemvalue="Docker.Docker Image" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestNettyServer" />
         <item itemvalue="Application.TestNettyClient" />
+        <item itemvalue="Application.TestNettyServer" />
+        <item itemvalue="Docker.Docker Image" />
         <item itemvalue="Application.NtClient" />
         <item itemvalue="Application.NtServer" />
-        <item itemvalue="Application.TestSocketServer" />
       </list>
     </recent_temporary>
   </component>
@@ -184,6 +251,10 @@
       <workItem from="1687454341627" duration="24760000" />
       <workItem from="1687751485048" duration="53568000" />
       <workItem from="1688471748053" duration="22381000" />
+      <workItem from="1705470916056" duration="11511000" />
+      <workItem from="1705489587544" duration="134000" />
+      <workItem from="1705489989422" duration="19553000" />
+      <workItem from="1705598923679" duration="326000" />
     </task>
     <task id="LOCAL-00001" summary="first commit. build Server &amp; Client to test basic RPC invoke.">
       <created>1687447163596</created>

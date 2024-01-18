@@ -1,5 +1,7 @@
 package org.fifpoet.util;
 
+import com.alibaba.nacos.api.annotation.NacosInjected;
+import com.alibaba.nacos.api.annotation.NacosProperties;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.alibaba.nacos.api.naming.NamingFactory;
 import com.alibaba.nacos.api.naming.NamingService;
@@ -12,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import java.net.InetSocketAddress;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
 /**
@@ -25,7 +28,7 @@ public class NacosUtil {
     private static final Set<String> serviceNames = new HashSet<>();
     private static InetSocketAddress address;
 
-    private static final String SERVER_ADDR = "127.0.0.1:8848";
+    private static final String SERVER_ADDR = "192.168.132.128:8848";
 
     static {
         namingService = getNacosNamingService();

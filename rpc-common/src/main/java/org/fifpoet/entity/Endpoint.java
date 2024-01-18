@@ -7,16 +7,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ServiceConfig {
+public class Endpoint {
 
-    private String version;
+    private String group;
     /**
      * the implementation object
      */
-    private Object service;
-    /**
-     * more than one impl, designate one
-     */
-    private String impl;
+    private Object stub;
+    private String host;
+    private int port;
 
 }

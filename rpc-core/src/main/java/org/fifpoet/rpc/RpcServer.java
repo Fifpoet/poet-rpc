@@ -1,10 +1,7 @@
 package org.fifpoet.rpc;
 
-import org.fifpoet.entity.ServiceConfig;
-import org.fifpoet.rpc.serializer.CommonSerializer;
+import org.fifpoet.entity.Endpoint;
 
 public interface RpcServer {
-
-    <T> void publishService(ServiceConfig config);
 
 }

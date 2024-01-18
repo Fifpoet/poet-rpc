@@ -1,5 +1,6 @@
 package org.fifpoet.rpc.transport.netty.client;
 
+import com.alibaba.nacos.api.naming.pojo.Instance;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -9,34 +10,35 @@ import io.netty.util.AttributeKey;
 import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.entity.RpcResponse;
 import org.fifpoet.enumeration.RegistryCenterCode;
-import org.fifpoet.enumeration.RpcErrorCode;
 import org.fifpoet.enumeration.SerializerCode;
-import org.fifpoet.exception.RpcException;
 import org.fifpoet.rpc.RpcClient;
 import org.fifpoet.rpc.codec.CommonDecoder;
 import org.fifpoet.rpc.codec.CommonEncoder;
-import org.fifpoet.rpc.registry.ServiceRegistry;
+import org.fifpoet.rpc.endpoints.ServiceEndpoints;
+import org.fifpoet.rpc.endpoints.registry.ServiceRegistry;
 import org.fifpoet.rpc.serializer.CommonSerializer;
 import org.fifpoet.rpc.serializer.KryoSerializer;
 import org.fifpoet.util.LogUtil;
 
 import java.net.InetSocketAddress;
 
+/**
+ * use netty to send packet to Server.
+ */
 public class NettyClient implements RpcClient {
 
     private static final Bootstrap bootstrap;
-    private final CommonSerializer serializer;
+    private final CommonSerializer serializer; //编码策略
+    private final ServiceEndpoints endpoints;
     private final ServiceRegistry registry;
 
     public NettyClient() {
-        this.serializer = CommonSerializer.getByCode(SerializerCode.DEFAULT.getCode());
-        this.registry = ServiceRegistry.getByCode(RegistryCenterCode.DEFAULT.getCode());
-    }
-    public NettyClient(CommonSerializer serializer, ServiceRegistry registry) {
-        this.serializer = serializer;
-        this.registry = registry;
+        this.serializer = CommonSerializer.getDefaultSerializer();
+        this.registry = ServiceRegistry.getDefaultRegistry();
+        this.endpoints = new ServiceEndpoints();
     }
 
+    //init EventLoopGroup, bind to bootstrap
     static {
         EventLoopGroup group = new NioEventLoopGroup();
         bootstrap = new Bootstrap();
@@ -56,11 +58,8 @@ public class NettyClient implements RpcClient {
 
     @Override
     public Object sendRequest(RpcRequest rpcRequest) {
-        if(serializer == null) {
-            LogUtil.ERROR().error("serializer not found");
-            throw new RpcException(RpcErrorCode.SERIALIZER_NOT_FOUND);
-        }
-        InetSocketAddress server = registry.lookupService(getFullServiceName(rpcRequest), rpcRequest);
+        Instance instance = endpoints.filterEndpointWithStrategy(rpcRequest.getServiceName(), rpcRequest);
+        InetSocketAddress server = new InetSocketAddress(instance.getIp(), instance.getPort());
         try {
             ChannelFuture connFuture = bootstrap.connect(server).sync();
             LogUtil.INFO().info("client connected to host {}:{}", server.getHostName(), server.getPort());
@@ -79,25 +78,8 @@ public class NettyClient implements RpcClient {
                 return rpcResponse.getData();
             }
         } catch (InterruptedException e) {
-            LogUtil.ERROR().error("send request or get response failed: ", e);
+            LogUtil.ERROR().error("sendRequest: send request or get response failed: ", e);
         }
         return null;
-    }
-
-    private String getFullServiceName(RpcRequest req) {
-        StringBuilder res = new StringBuilder(req.getServiceName());
-        // if impl in annotation is not null, append it.
-        String impl = req.getImpl();
-        if (impl != null && impl.length() != 0) {
-            res.append("-").append(impl);
-        }
-        res.append("-");
-        String version = req.getVersion();
-        if (version == null || version.equals("")) {
-            res.append("0");
-        }else {
-            res.append(version);
-        }
-        return res.toString();
     }
 }

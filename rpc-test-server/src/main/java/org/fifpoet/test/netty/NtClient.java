@@ -34,7 +34,7 @@ public class NtClient {
                 });
         Channel channel = bootstrap.connect("127.0.0.1", 8080).channel();
         for (int i = 1; ;i++) {
-            RpcRequest request = new RpcRequest("xwklaj", "dawjldh", null, null, "1", "0");
+            RpcRequest request = new RpcRequest("xwklaj", "dawjldh", null, null);
             channel.writeAndFlush(request);
             System.out.println(i);
         }

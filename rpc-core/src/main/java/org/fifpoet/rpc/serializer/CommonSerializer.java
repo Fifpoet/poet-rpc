@@ -32,4 +32,8 @@ public interface CommonSerializer {
         }
     }
 
+    static CommonSerializer getDefaultSerializer() {
+        return CommonSerializer.getByCode(1);
+    }
+
 }

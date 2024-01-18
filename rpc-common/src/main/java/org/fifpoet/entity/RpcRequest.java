@@ -31,13 +31,4 @@ public class RpcRequest implements Serializable {
      * 调用方法的参数类型
      */
     private Class<?>[] paramTypes;
-
-    /**
-     * 指定的Server版本
-     */
-    private String version;
-    /**
-     * 指定实现类标识
-     */
-    private String impl;
 }
