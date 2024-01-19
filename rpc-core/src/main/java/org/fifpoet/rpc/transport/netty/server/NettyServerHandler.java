@@ -9,7 +9,6 @@ import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.entity.RpcResponse;
 import org.fifpoet.enumeration.ResponseCode;
 import org.fifpoet.rpc.endpoints.ServiceEndpoints;
-import org.fifpoet.rpc.transport.RequestHandler;
 import org.fifpoet.util.LogUtil;
 
 import java.lang.reflect.InvocationTargetException;

@@ -1,7 +1,6 @@
 package org.fifpoet.rpc.transport.netty.client;
 
 import org.fifpoet.entity.RpcRequest;
-import org.fifpoet.rpc.RpcClient;
 import org.fifpoet.util.LogUtil;
 
 import java.lang.reflect.InvocationHandler;
@@ -9,9 +8,9 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 public class RpcClientProxy implements InvocationHandler {
-    private final RpcClient rpcClient;
+    private final NettyClient rpcClient;
 
-    public RpcClientProxy(RpcClient rpcClient) {
+    public RpcClientProxy(NettyClient rpcClient) {
         this.rpcClient = rpcClient;
     }
 

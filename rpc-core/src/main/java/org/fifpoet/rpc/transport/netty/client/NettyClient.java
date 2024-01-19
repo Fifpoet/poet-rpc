@@ -9,9 +9,6 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.AttributeKey;
 import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.entity.RpcResponse;
-import org.fifpoet.enumeration.RegistryCenterCode;
-import org.fifpoet.enumeration.SerializerCode;
-import org.fifpoet.rpc.RpcClient;
 import org.fifpoet.rpc.codec.CommonDecoder;
 import org.fifpoet.rpc.codec.CommonEncoder;
 import org.fifpoet.rpc.endpoints.ServiceEndpoints;
@@ -25,7 +22,7 @@ import java.net.InetSocketAddress;
 /**
  * use netty to send packet to Server.
  */
-public class NettyClient implements RpcClient {
+public class NettyClient {
 
     private static final Bootstrap bootstrap;
     private final CommonSerializer serializer; //编码策略
@@ -56,7 +53,6 @@ public class NettyClient implements RpcClient {
                 });
     }
 
-    @Override
     public Object sendRequest(RpcRequest rpcRequest) {
         Instance instance = endpoints.filterEndpointWithStrategy(rpcRequest.getServiceName(), rpcRequest);
         InetSocketAddress server = new InetSocketAddress(instance.getIp(), instance.getPort());

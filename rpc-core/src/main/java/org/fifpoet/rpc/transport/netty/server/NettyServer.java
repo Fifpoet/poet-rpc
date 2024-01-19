@@ -11,7 +11,6 @@ import org.fifpoet.entity.Endpoint;
 import org.fifpoet.enumeration.RpcErrorCode;
 import org.fifpoet.enumeration.SerializerCode;
 import org.fifpoet.exception.RpcException;
-import org.fifpoet.rpc.RpcServer;
 import org.fifpoet.rpc.ShutdownHook;
 import org.fifpoet.rpc.annotation.RpcService;
 import org.fifpoet.rpc.annotation.RpcServiceScan;
