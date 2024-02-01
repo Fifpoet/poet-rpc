@@ -1,5 +1,6 @@
 package org.fifpoet.rpc.transport.netty.server;
 
+import com.google.common.util.concurrent.RateLimiter;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
@@ -8,19 +9,30 @@ import io.netty.util.ReferenceCountUtil;
 import org.fifpoet.entity.RpcRequest;
 import org.fifpoet.entity.RpcResponse;
 import org.fifpoet.enumeration.ResponseCode;
+import org.fifpoet.exception.RateLimitedException;
 import org.fifpoet.rpc.endpoints.ServiceEndpoints;
 import org.fifpoet.util.LogUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.concurrent.TimeUnit;
 
 /**
  * handle Netty request
  */
 public class NettyServerHandler extends SimpleChannelInboundHandler<RpcRequest> {
 
+    private RateLimiter limiter;
+
+    public NettyServerHandler() {
+        limiter = RateLimiter.create(100);
+    }
+
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RpcRequest req) throws Exception {
+        if(!limiter.tryAcquire(300, TimeUnit.MILLISECONDS)) {
+            throw new RateLimitedException();
+        }
         try {
             LogUtil.INFO().info("netty receive req: {}", req);
             Object service = ServiceEndpoints.getServiceObject(req.getServiceName());
